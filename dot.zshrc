@@ -54,29 +54,68 @@ setopt inc_append_history
 # history (fc -l) コマンドをヒストリリストから取り除く。
 setopt hist_no_store
 
-
-#rbenv
-PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-
 #alias
 alias ll="ls -Fal"
 
 #PROMPT PS1
 case ${UID} in
 0)
-    PROMPT="%B%{[31m%}%/#%{[m%}%b "
-    PROMPT2="%B%{[31m%}%_#%{[m%}%b "
-    SPROMPT="%B%{[31m%}%r is correct? [n,y,a,e]:%{[m%}%b "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-    ;;
+  PROMPT="[%{${fg[blue]}%}%n@%m%{${reset_color}%}] %{${fg[blue]}%}#%{${reset_color}%} "
+  PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
+  SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+  RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+  ;;
 *)
-    PROMPT="%{[31m%}%/%%%{[m%} "
-    PROMPT2="%{[31m%}%_%%%{[m%} "
-    SPROMPT="%{[31m%}%r is correct? [n,y,a,e]:%{[m%} "
-    [ -n "${REMOTEHOST}${SSH_CONNECTION}" ] && 
-        PROMPT="%{[37m%}${HOST%%.*} ${PROMPT}"
-    ;;
+  PROMPT="[%n@%m] %{${fg[blue]}%}$%{${reset_color}%} "
+  PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
+  SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
+  RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+  ;;
 esac
 
+## エイリアス
+setopt complete_aliases
+
+case "${OSTYPE}" in
+freebsd*|darwin*)
+alias ls="ls -G -w"
+;;
+linux*)
+alias ls="ls --color"
+;;
+esac
+alias ll="ls -Fal"
+
+## 検索
+export TEXT_BROWSER=w3m
+
+function _space2p20
+{
+    echo $@ |sed -e "s/ /%20/g"
+}
+
+function _space2plus
+{
+    echo $@ | sed -e "s/ /+/g"
+}
+
+function google
+{
+    ${TEXT_BROWSER} "http://www.google.co.jp/search?q="`_space2plus $@`"&hl=ja"
+}
+
+function ydic
+{
+    ${TEXT_BROWSER} "http://dic.yahoo.co.jp/dsearch?enc=UTF-8&p="`_space2plus $@`"&stype=0&dtyp
+e=2"
+}
+
+function technorati
+{
+    ${TEXT_BROWSER} http://www.technorati.com/search/`_space2p20 $@`"?language=ja"
+}
+
+function wikipedia
+{
+    ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
+}
