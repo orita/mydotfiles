@@ -11,7 +11,7 @@ setopt pushd_ignore_dups
 setopt correct
 
 # コマンドライン全てのスペルチェックをする
-setopt correct_all
+#setopt correct_all
 
 # 補完候補が複数ある時に、一覧表示する
 setopt auto_list
@@ -57,19 +57,25 @@ setopt hist_no_store
 #alias
 alias ll="ls -Fal"
 
+# 色付ける
+autoload colors
+colors
+
 #PROMPT PS1
 case ${UID} in
 0)
-  PROMPT="[%{${fg[blue]}%}%n@%m%{${reset_color}%}] %{${fg[blue]}%}#%{${reset_color}%} "
+  #RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+  PROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}
+[%n@%m] %{${fg[blue]}%}#%{${reset_color}%}"
   PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
   SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-  RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
   ;;
 *)
-  PROMPT="[%n@%m] %{${fg[blue]}%}$%{${reset_color}%} "
+  #RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
+  PROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}
+[%n@%m] %{${fg[blue]}%}$%{${reset_color}%}"
   PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
   SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
-  RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
   ;;
 esac
 
@@ -119,3 +125,7 @@ function wikipedia
 {
     ${TEXT_BROWSER} http://ja.wikipedia.org/wiki/`_space2p20 $@`
 }
+
+# zsh-completions
+  fpath=(/usr/local/share/zsh-completions $fpath)
+
