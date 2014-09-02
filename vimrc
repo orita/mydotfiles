@@ -1,4 +1,6 @@
 syntax on
+set hlsearch
+filetype plugin on
 
 "neobundle------------------------------------
 if has('vim_starting')
