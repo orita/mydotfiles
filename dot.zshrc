@@ -66,14 +66,14 @@ case ${UID} in
 0)
   #RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
   PROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}
-[%n@%m] %{${fg[blue]}%}#%{${reset_color}%}"
+[%n@%m] %{${fg[blue]}%}#%{${reset_color}%} "
   PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
   SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
   ;;
 *)
   #RPROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}"
   PROMPT="%{${fg[blue]}%}[%/]%{${reset_color}%}
-[%n@%m] %{${fg[blue]}%}$%{${reset_color}%}"
+[%n@%m]%{${fg[blue]}%}$%{${reset_color}%} "
   PROMPT2="%B%{${fg[blue]}%}%_#%{${reset_color}%}%b "
   SPROMPT="%B%{${fg[blue]}%}%r is correct? [n,y,a,e]:%{${reset_color}%}%b "
   ;;

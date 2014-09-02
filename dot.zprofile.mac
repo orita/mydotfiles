@@ -1,7 +1,7 @@
 #rbenv
 PATH="$HOME/.rbenv/bin:/usr/local/bin:/usr/local/sbin:$PATH"
- eval "$(rbenv init -)"
+eval "$(rbenv init - zsh)"
  
 #perlbrew
-source ~/perl5/perlbrew/etc/bashrc
+#source ~/perl5/perlbrew/etc/bashrc
 
