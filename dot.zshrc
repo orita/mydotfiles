@@ -127,5 +127,6 @@ function wikipedia
 }
 
 # zsh-completions
-  fpath=(/usr/local/share/zsh-completions $fpath)
-
+autoload -U compinit
+fpath=(/usr/local/share/zsh-completions $fpath)
+compinit

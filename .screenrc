@@ -1,1 +1,6 @@
 escape ^z^z
+autodetach on
+startup_message off
+vbell off
+hardstatus alwayslastline "%w"
+defscrollback 10000

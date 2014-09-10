@@ -60,6 +60,9 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+" neocomplete
+let g:neocomplete#enable_at_startup = 1
+
 " serverspec-snippets
 let g:neosnippet#snippets_directory = [
       \'~/.vim/snippets',
