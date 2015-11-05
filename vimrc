@@ -70,6 +70,9 @@ let g:neosnippet#snippets_directory = [
       \]
 
 
+set paste
+set autoindent
+set tabstop=2
 " source ~/github/mydotfiles/vimrc.vundle
 " source ~/github/mydotfiles/vimrc.neobundle
 " source ~/github/mydotfiles/vimrc.ca6

@@ -56,10 +56,15 @@ setopt hist_no_store
 
 #alias
 alias ll="ls -Fal"
+## flush dns cache yosemite
+alias flushdnscache="sudo discoveryutil udnsflushcaches"
 
 # 色付ける
 autoload colors
 colors
+
+# zsh: no matches foundやめる
+setopt nonomatch
 
 #PROMPT PS1
 case ${UID} in
@@ -130,3 +135,32 @@ function wikipedia
 autoload -U compinit
 fpath=(/usr/local/share/zsh-completions $fpath)
 compinit
+
+# boot2docker
+#$(boot2docker shellinit)
+
+# rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# phpenv
+#export PATH=$PATH:~/.phpenv/bin
+#eval $(phpenv init -)
+
+# direnv
+eval "$(direnv hook zsh)"
+
+# Visual Studio Code
+code () {
+    if [[ $# = 0 ]]
+    then
+        open -a "Visual Studio Code"
+    else
+        [[ $1 = /* ]] && F="$1" || F="$PWD/${1#./}"
+        open -a "Visual Studio Code" --args "$F"
+    fi
+}
+
+#gcp
+source gcp/noplan-isucon/dot.envrc 
+
